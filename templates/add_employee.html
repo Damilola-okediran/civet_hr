@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>Add Employee</h2>
+
+    <form method="POST" class="employee-form">
+        <label for="full_name">Full Name</label>
+        <input type="text" name="full_name" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+
+        <label for="phone">Phone</label>
+        <input type="text" name="phone">
+
+        <label for="role_title">Role Title</label>
+        <input type="text" name="role_title" required>
+
+        <label for="department">Department</label>
+        <input type="text" name="department">
+
+        <label for="salary">Salary</label>
+        <input type="number" name="salary" step="0.01" required>
+
+        <label for="hire_date">Hire Date</label>
+        <input type="date" name="hire_date">
+
+        <label for="status">Status</label>
+        <select name="status">
+            <option value="Active">Active</option>
+            <option value="On Leave">On Leave</option>
+            <option value="Resigned">Resigned</option>
+        </select>
+
+        <button type="submit">Save Employee</button>
+    </form>
+</div>
+{% endblock %}

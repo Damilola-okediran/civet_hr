@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>Employee Payslip</h2>
+
+    <p><strong>Employee Name:</strong> {{ payroll.employee.full_name }}</p>
+    <p><strong>Email:</strong> {{ payroll.employee.email }}</p>
+    <p><strong>Role:</strong> {{ payroll.employee.role_title }}</p>
+    <p><strong>Department:</strong> {{ payroll.employee.department }}</p>
+    <p><strong>Pay Period:</strong> {{ payroll.pay_period }}</p>
+    <p><strong>Basic Salary:</strong> ₦{{ "{:,.2f}".format(payroll.basic_salary) }}</p>
+    <p><strong>Bonus:</strong> ₦{{ "{:,.2f}".format(payroll.bonus) }}</p>
+    <p><strong>Deductions:</strong> ₦{{ "{:,.2f}".format(payroll.deductions) }}</p>
+    <p><strong>Net Salary:</strong> ₦{{ "{:,.2f}".format(payroll.net_salary) }}</p>
+    <p><strong>Payment Date:</strong> {{ payroll.payment_date }}</p>
+
+    <a href="{{ url_for('download_paystub', payroll_id=payroll.id) }}">
+        <button>Download PDF Payslip</button>
+    </a>
+</div>
+{% endblock %}

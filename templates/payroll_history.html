@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>Payroll History</h2>
+
+    {% if payrolls %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Employee</th>
+                    <th>Pay Period</th>
+                    <th>Basic Salary</th>
+                    <th>Bonus</th>
+                    <th>Deductions</th>
+                    <th>Net Salary</th>
+                    <th>Payment Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payroll in payrolls %}
+                <tr>
+                    <td>{{ payroll.id }}</td>
+                    <td>{{ payroll.employee.full_name }}</td>
+                    <td>{{ payroll.pay_period }}</td>
+                    <td>₦{{ "{:,.2f}".format(payroll.basic_salary) }}</td>
+                    <td>₦{{ "{:,.2f}".format(payroll.bonus) }}</td>
+                    <td>₦{{ "{:,.2f}".format(payroll.deductions) }}</td>
+                    <td>₦{{ "{:,.2f}".format(payroll.net_salary) }}</td>
+                    <td>{{ payroll.payment_date }}</td>
+                    <td>
+                        <a href="{{ url_for('view_paystub', payroll_id=payroll.id) }}">View</a> |
+                        <a href="{{ url_for('download_paystub', payroll_id=payroll.id) }}">Download PDF</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No payroll records found yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

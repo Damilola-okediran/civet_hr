@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>Generate Payslip</h2>
+
+    <p><strong>Employee:</strong> {{ employee.full_name }}</p>
+    <p><strong>Role:</strong> {{ employee.role_title }}</p>
+    <p><strong>Department:</strong> {{ employee.department }}</p>
+
+    <form method="POST" class="employee-form">
+        <label for="pay_period">Pay Period</label>
+        <input type="text" name="pay_period" placeholder="e.g. April 2026" required>
+
+        <label for="basic_salary">Basic Salary</label>
+        <input type="number" name="basic_salary" step="0.01" value="{{ employee.salary }}" required>
+
+        <label for="bonus">Bonus</label>
+        <input type="number" name="bonus" step="0.01" value="0">
+
+        <label for="deductions">Deductions</label>
+        <input type="number" name="deductions" step="0.01" value="0">
+
+        <label for="payment_date">Payment Date</label>
+        <input type="date" name="payment_date" required>
+
+        <button type="submit">Create Payslip</button>
+    </form>
+</div>
+{% endblock %}
